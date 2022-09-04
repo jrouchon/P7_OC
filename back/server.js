@@ -1,19 +1,8 @@
-/*require("dotenv");*/
+require("dotenv");
 const http = require('http');
 const app = require('./app');
 
-const normalizePort = val => {
-    const port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        return val;
-    }
-    if (port >= 0) {
-        return port;
-    }
-    return false;
-};
-const port = normalizePort(process.env.PORT || 4200); // ou '4200' sans ne marche pas 
+const port = process.env.PORT;
 app.set('port', port);
 
 const errorHandler = error => {
