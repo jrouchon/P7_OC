@@ -1,21 +1,23 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Auth from "../../pages/Auth";
-// import Posts from "../../pages/Posts/index";
+import Auth from './pages/Auth/index.jsx';
+import Posts from './pages/Post/index.jsx';
+import ErrorP from './pages/errorPage.jsx';
 
-const DefaultRoutes = () => {
+const App = () => {
   return (
     <div>
       <Router>
-        <h1>Page test</h1>
+        <h1>Page principale</h1>
         <Routes>
           <Route exact path="/" element={<Auth />} />
           <Route exact path="/auth" element={<Auth />} />
           <Route exact path="/posts" element={<Posts />} />
+          <Route path="*" element={<ErrorP />} />
         </Routes>
       </Router>
     </div>
   );
 };
 
-export default DefaultRoutes;
+export default App;

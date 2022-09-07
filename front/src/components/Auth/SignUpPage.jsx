@@ -5,7 +5,7 @@ const SignUpPage = () => {
     return(
     <form action="" id="login-form">
         <div>
-            <label>Nom d'utilisateur</label>
+            <label for="name" >Nom d'utilisateur</label>
             <input
                 type="text"
                 name="name"
@@ -14,7 +14,7 @@ const SignUpPage = () => {
         
         </div>
         <div>
-            <label>Email</label>
+            <label for="email" >Email</label>
             <input
                 type="text"
                 name="email"
@@ -23,7 +23,7 @@ const SignUpPage = () => {
         
         </div>
         <div>
-            <label>Mot de passe</label>
+            <label for="password" >Mot de passe</label>
             <input
                 type="password"
                 name="password"
@@ -31,7 +31,7 @@ const SignUpPage = () => {
             />
         
         </div>
-        <input  type="submit" value="Se connecter" />
+        <input  type="submit" value="S'inscrire" />
     </form>
     );
 }

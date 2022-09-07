@@ -5,7 +5,7 @@ const LoginPage = () => {
     return(
 <form action="" id="login-form">
       <div>
-      <label>Email</label>
+      <label for="email" >Email</label>
         <input
           type="text"
           name="email"
@@ -14,7 +14,7 @@ const LoginPage = () => {
         
       </div>
       <div>
-      <label>Mot de passe</label>
+      <label for="password">Mot de passe</label>
         <input
           type="password"
           name="password"
