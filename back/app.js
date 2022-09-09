@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const app = express();
+const helmet = require('helmet');
 
 const userRoutes = require('./routes/user.js');
 const postsRoutes = require('./routes/posts.js');
@@ -22,16 +23,22 @@ mongoose.connect(`mongodb+srv://${dbuser}:${dbpasswd}@cluster0.v0vdoa1.mongodb.n
 
 
 //middleware cors_handling bodyparser
-app.use(cors())
+app.use(helmet({
+    crossOriginResourcePolicy: { policy: "same-site"}
+}))
+
+app.use(cors());
+
+
 app.use(express.json());
 
 // testing server
-app.use((req, res) => {
-    res.json({ message: 'Votre requête a bien été reçue !' });
-});
+//app.use((req, res) => {
+//    res.json({ message: 'Votre requete a bien Ã©tÃ© reÃ§ue !' });
+//});
 
 //routes
-// app.use('/api/auth', userRoutes);
+ app.use('/api/auth', userRoutes);
 // app.use('/api/posts', postsRoutes);
 // app.use('/images', express.static(path.join(__dirname, 'images')));
 
