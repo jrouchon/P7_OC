@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const navigate = useNavigate();
 
   const handleSignup = (e) => {
     let signUpStatus = document.querySelector(".signup-status");
@@ -20,9 +23,11 @@ const SignUpPage = () => {
         password: password,
       },
     })
-      .then(() => {
-        signUpStatus.textContent =
-          "Inscription réussie ! Essayez de vous connecter !";
+      .then((res) => {
+        signUpStatus.textContent = "Inscription réussie !";
+        //console.log("res", res);
+        navigate('/posts');
+        localStorage.setItem("token", res.data.token);
       })
       .catch(
         (err) =>
@@ -33,7 +38,7 @@ const SignUpPage = () => {
     return(
     <form action="" onSubmit={handleSignup} id="login-form">
         <div>
-            <label for="name" >Nom d'utilisateur</label>
+            <label htmlFor="name" >Nom d'utilisateur</label>
             <input
                 type="text"
                 name="name"
@@ -45,7 +50,7 @@ const SignUpPage = () => {
         
         </div>
         <div>
-            <label for="email" >Email</label>
+            <label htmlFor="email" >Email</label>
             <input
                 type="text"
                 name="email"
@@ -57,7 +62,7 @@ const SignUpPage = () => {
         
         </div>
         <div>
-            <label for="password" >Mot de passe</label>
+            <label htmlFor="password" >Mot de passe</label>
             <input
                 type="password"
                 name="password"

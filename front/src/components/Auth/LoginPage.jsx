@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const emailError = document.querySelector('.email.error');
-    const passwordError = document.querySelector('.password.error');
+    const emailError = document.querySelector('.emailError');
+    const passwordError = document.querySelector('.passwordError');
     
     axios({
       method: "post",
@@ -21,23 +23,27 @@ const LoginPage = () => {
     })
       
       .then((res) => {
-        if (res.data.errors) {
-          emailError.innerHTML = "Identifiants incorrects" + res.status;
-          passwordError.innerHTML = "Identifiants incorrects" + res.status;
+        if (res.status === 200) {
+          // delete res.config.adapter.data; //besoin de supprimer les informations de connexion ?
+          localStorage.setItem("token", res.data.token);
+          //console.log("res", res);
+          navigate('/posts');
+          
         } else {
-          //todo token and all
-          console.log("res", res)
+          emailError.innerHTML = "Identifiants incorrects";
+          passwordError.innerHTML = "Identifiants incorrects";
         }
       })
       .catch((err) => {
-        console.log(err)
+        emailError.innerHTML = "Identifiants incorrects " + err; //enlever les err 
+        passwordError.innerHTML = "Identifiants incorrects " + err; //enlever les err 
       })
   };
 
   return(
     <form action="" onSubmit={handleLogin} id="login-form">
       <div>
-      <label for="email" >Email</label>
+      <label htmlFor="email" >Email</label>
       <input
         type="text"
         name="email"
@@ -47,9 +53,9 @@ const LoginPage = () => {
         required={true}
       />
       </div>
-      <div className="email error"></div>
+      <div className="emailError"></div>
       <div>
-      <label for="password">Mot de passe</label>
+      <label htmlFor="password">Mot de passe</label>
       <input
         type="password"
         name="password"
@@ -59,7 +65,7 @@ const LoginPage = () => {
         required={true}
       />
       </div>
-      <div className="password error"></div>
+      <div className="passwordError"></div>
       <input  type="submit" value="Se connecter" />
     </form>
   );

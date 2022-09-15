@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const tk = process.env.RD_TOKEN;
 
-//hash du mdp et sauvegarde en bdd du mdp hashé et de l'email
+//hash du mdp et sauvegarde en bdd du mdp hashé, du nom et de l'email
 exports.signupUser = (req, res) => {
     //console.log(req.body);
     bcrypt.hash(req.body.password, 10)
@@ -15,8 +15,19 @@ exports.signupUser = (req, res) => {
                 password: hash
             });
             user.save()
-                .then(() => res.status(201).json({ message: 'User created' }))
-                .catch(error => res.status(400).json({ error }))
+            .then(() => {
+                const token = jwt.sign(
+                    { userId: user._id },
+                    tk,
+                    { expiresIn: '24h'}
+                )
+                res.setHeader("Authorization", "Bearer" + token);
+                res.status(201).json({
+                    userId: user._id,
+                    token: token
+                })
+            })
+            .catch(error => res.status(400).json({ error }))
         })
         .catch(error => res.status(500).json({ error }));
 };
@@ -34,13 +45,15 @@ exports.loginUser = (req, res) => {
                         if (!valid) {
                             res.status(401).json({ message: 'login ou mot de passe invalide' })
                         } else {
+                            const token = jwt.sign(
+                                { userId: user._id },
+                                tk,
+                                { expiresIn: '24h'}
+                            )
+                            res.setHeader("Authorization", "Bearer" + token);
                             res.status(200).json({
                                 userId: user._id,
-                                token: jwt.sign(
-                                    { userId: user._id },
-                                    tk,
-                                    { expiresIn: '24h'}
-                                )
+                                token: token
                             })
                         }
                     })

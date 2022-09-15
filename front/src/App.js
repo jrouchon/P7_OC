@@ -8,7 +8,6 @@ const App = () => {
   return (
     <div>
       <Router>
-        <h1>Page principale</h1>
         <Routes>
           <Route exact path="/" element={<Auth />} />
           <Route exact path="/auth" element={<Auth />} />
