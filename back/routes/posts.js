@@ -10,6 +10,6 @@ const postCtrl = require('../controllers/posts.js');
 // router.get("/:id", auth, postCtrl.getOnePost);
 // router.put("/:id", auth, multer, postCtrl.modifyPost);
 // router.delete("/:id", auth, postCtrl.deletePost);
-// router.post("/:id/like", auth, postCtrl.likePost);
+ router.patch("/:id/like", auth, postCtrl.likePost);
 
 module.exports = router;

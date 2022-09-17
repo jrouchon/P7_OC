@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Like from "./like.jsx";
 
 function dateParser(num) {
     let options = {
@@ -17,6 +18,11 @@ function dateParser(num) {
       return date.toString();
 }
 
+function getOnePost() {
+    // might delete this if not implemented
+    //changer li pour div 
+}
+
 const Card = ({ post }) => {
     const [isLoading, setIsLoading] = useState(true);
     
@@ -25,7 +31,7 @@ const Card = ({ post }) => {
     }, [post]);
 
     return (
-        <li className="cardContainer" key={post._id}>
+        <div className="cardContainer" key={post._id} onClick={getOnePost}> 
             {isLoading ? ( 
                 <i className="fas fa-spinner fa-spin"></i>
                 ) : (
@@ -38,11 +44,15 @@ const Card = ({ post }) => {
                         {post.text ? (<h2>{post.text}</h2>) : null}
                         {post.imageUrl ? (<img className="cardImage" src={post.imageUrl} alt={post.imageUrl} />) : null}
                     </div>
-                
+                    <div className="postAction">
+                        <Like post={post} />
+                        
+
+                    </div>
                 </div>
              )}
             
-        </li>
+        </div>
     )
 }
 

@@ -1,0 +1,18 @@
+.cardContainer{
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 3px blue;
+}
+.likeButtonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    .likeButton{
+        display: flex;
+        flex-direction: row;
+        i{
+            cursor: pointer;
+        }
+    }
+}

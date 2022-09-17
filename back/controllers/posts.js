@@ -41,3 +41,40 @@ exports.createPost = (req, res) => {
       .catch((err) => res.status(500).json({err}));
 }
 
+
+
+
+exports.likePost = async (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+  const decodedToken = jwt.decode(token);
+  const userId = decodedToken.userId;
+
+  const id = req.params.id;
+  
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ message: "Ce post n'existe pas."});
+  }
+
+  await Post.findById(id)
+    .then((post) => {
+        if (req.body.like === 1) {
+          if(post.usersLiked.find(user => user = userId)) {
+            post.usersLiked.splice(userId);
+            post.likes--
+            res.status(202).json({message : "Retrait du like"})
+          } else {
+            post.usersLiked.push(userId)
+            post.likes++;
+            res.status(200).json({message : "Publication likée"})
+          }
+          
+        }
+        
+        Post.updateOne({_id : id}, {$set : { likes: post.likes, usersLiked: post.usersLiked}}, {upsert: true, strict: false})
+        .then((res) => {return res})
+    })
+
+    
+};
