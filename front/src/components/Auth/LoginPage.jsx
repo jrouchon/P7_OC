@@ -26,6 +26,7 @@ const LoginPage = () => {
         if (res.status === 200) {
           // delete res.config.adapter.data; //besoin de supprimer les informations de connexion ?
           localStorage.setItem("token", res.data.token);
+          localStorage.setItem("name", res.data.name);
           //console.log("res", res);
           navigate('/posts');
           

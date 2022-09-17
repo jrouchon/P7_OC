@@ -53,7 +53,8 @@ exports.loginUser = (req, res) => {
                             res.setHeader("Authorization", "Bearer" + token);
                             res.status(200).json({
                                 userId: user._id,
-                                token: token
+                                token: token,
+                                name: user.name
                             })
                         }
                     })
@@ -61,4 +62,9 @@ exports.loginUser = (req, res) => {
             }
         })
         .catch(error => res.status(500).json({ error }));
+}
+
+exports.logoutUser = (req, res) => {
+    res.setHeader("Authorization", "Bearer" + " ");
+    res.redirect(200, '/')
 }

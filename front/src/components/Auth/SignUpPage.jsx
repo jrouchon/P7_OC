@@ -28,6 +28,7 @@ const SignUpPage = () => {
         //console.log("res", res);
         navigate('/posts');
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("name", res.data.name);
       })
       .catch(
         (err) =>

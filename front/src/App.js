@@ -4,6 +4,7 @@ import Auth from './pages/Auth/index.jsx';
 import Posts from './pages/Post/index.jsx';
 import ErrorP from './pages/errorPage.jsx';
 
+
 const App = () => {
   return (
     <div>
