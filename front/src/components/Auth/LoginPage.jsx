@@ -27,6 +27,7 @@ const LoginPage = () => {
           // delete res.config.adapter.data; //besoin de supprimer les informations de connexion ?
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("name", res.data.name);
+          localStorage.setItem("userId", res.data.userId);
           //console.log("res", res);
           navigate('/posts');
           

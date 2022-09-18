@@ -12,8 +12,8 @@ exports.getPosts = (req, res) => {
         } else {
           return res.status(404).json(err);
         }
-      }).sort({ "createdAt" : -1});
-};
+      }).sort({ "date" : -1});
+}; 
 
     /*userId: { type: String, required: true },
     userName: { type: String, required: true }, // 
@@ -60,8 +60,11 @@ exports.likePost = async (req, res) => {
   await Post.findById(id)
     .then((post) => {
         if (req.body.like === 1) {
-          if(post.usersLiked.find(user => user = userId)) {
-            post.usersLiked.splice(userId);
+          const userLikeIndex = post.usersLiked.findIndex(
+            (user) => user == userId
+          );
+          if(userLikeIndex !== -1) {
+            post.usersLiked.splice(userLikeIndex, 1);
             post.likes--
             res.status(202).json({message : "Retrait du like"})
           } else {

@@ -13,29 +13,34 @@ function fetchPost(token) {
           })
           .then((res) => res.data)
           .then(resolve)
-          .catch(console.error);
+          .catch(console.error)
       });
 }
 
 const GetPosts = () => {
     const [posts, setPosts] = useState([]);
     const token = localStorage.getItem("token");
+    //console.log("token", token);
+    if(!token) {
+      window.location = "/";
+    }
 
     useEffect(() => {
-        fetchPost(token).then((res) => setPosts(res))
+        fetchPost(token)
+        .then((res) => setPosts(res))
 
       }, [token])
 
     return (
         <div id="postsContainer">
             <h2>Pages de Posts : fil </h2>
-            <ul>
+            <div>
                 {posts.reverse().map((post) => {
                     return (
                     <Card post={post} key={post._id} />
                     )
                 })}
-            </ul>
+            </div>
         </div>
     );
 }

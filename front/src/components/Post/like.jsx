@@ -23,15 +23,19 @@ function like(token, post) {
 
 
 const Like = ({ post }) => {
-    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
     const [liked, setLiked] = useState(false);
     const [postNum, setPostNum] = useState(post.likes);
-    
+    console.log("post", post);
     useEffect(() => {
-        if(post.usersLiked.includes(post.userId)) {
+        const bool = post.usersLiked.includes(userId);
+        console.log("bool :", bool);
+        console.log(userId);
+        if(post.usersLiked.includes(userId)) {
+            console.log("post liké par:", post.usersLiked)
             setLiked(true);
         }
-    }, [post, setLiked]
+    }, [post, setLiked, userId]
     )
 
     
@@ -39,7 +43,7 @@ const Like = ({ post }) => {
         <div className="likeButtonContainer">
             <div className="likeButton">
                 <i className="fas fa-solid fa-thumbs-up" onClick={() => { 
-                    like(token, post)
+                    like(post)
                         .then(() => {liked ? setLiked(false) : setLiked(true)})
                         .then(() => {liked ? setPostNum(postNum - 1) : setPostNum(postNum + 1)})
                 }} style={ liked ? { color: "green" } : { color: "grey"}}></i>
