@@ -62,8 +62,8 @@ exports.modifyPost = async (req, res) => {
             res.status(401).json({message : "Non autorisé."})
           } else {
             const text = req.body.text;
-            console.log("text : ", text);
-            console.log("image : ", req.file);
+            //console.log("text : ", text);
+            //console.log("image : ", req.file);
             let image = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
             const filename = post.imageUrl.split("/images/")[1];
             fs.unlink(`images/${filename}`, () => {
@@ -80,6 +80,37 @@ exports.modifyPost = async (req, res) => {
       })
   })
   .catch(err => res.status(500).json({error: err}))
+};
+
+exports.deletePost = async (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+  const decodedToken = jwt.decode(token);
+  const userId = decodedToken.userId;
+  const {id} = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ message: "Ce post n'existe pas." });
+  }
+
+  await Post.findById(id)
+      .then((post) => {
+        User.findById(userId)
+            .then((currentUser) => {
+              if (post.userId === currentUser.id || currentUser.role === admin) {
+                const filename = post.imageUrl.split("/images/")[1];
+                fs.unlink(`images/${filename}`, () => {
+                  Post.deleteOne({ _id: id })
+                      .then(() => res.status(200).json({ message: "Post supprimee !" }))
+                      .catch((error) => res.status(400).json({ error }));
+                });
+              }
+              else {
+                res.status(403).json({message : "Non autorisé."})
+              }
+              
+            })
+          
+      });
 };
 
 

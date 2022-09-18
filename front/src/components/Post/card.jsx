@@ -2,8 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Like from "./like.jsx";
 import ModifyPost from "./modify.jsx";
+import DeletePost from "./delete.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function dateParser(num) {
     let options = {
@@ -24,7 +25,9 @@ function dateParser(num) {
 const Card = ({ post }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [showModify, setShowModify] = useState(false);
+    const [deleted, setDeleted] = useState(false);
     const [showGestion, setShowGestion] = useState(false);
+
 
 
     function modifyToggle() {
@@ -33,6 +36,15 @@ const Card = ({ post }) => {
             setShowModify(true)
         } else {
             setShowModify(false)
+        }
+    }
+
+    function deleteToggle() {
+        const userId = localStorage.getItem("userId");
+        if (post.userId === userId) {
+            setDeleted(true)
+        } else {
+            setDeleted(false)
         }
     }
 
@@ -68,10 +80,10 @@ const Card = ({ post }) => {
                         <Like post={post} />
                         {showGestion ? (
                             <div className="postGestion">
-                            <FontAwesomeIcon icon={faPenToSquare} className="modifyBtn btn-action" onClick={modifyToggle} />
-                                {
-                                    showModify ? <ModifyPost post={post} /> : null
-                                }
+                                <FontAwesomeIcon icon={faPenToSquare} className="modifyBtn btn-action" onClick={modifyToggle} />
+                                    { showModify ? <ModifyPost post={post} /> : null }
+                                <FontAwesomeIcon icon={faTrash} className="deleteToggle btn-action" onClick={deleteToggle} />
+                                    { deleted ? <DeletePost post={post} /> : null }
                             </div>
                         ) : null }
                         

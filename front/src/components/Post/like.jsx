@@ -4,7 +4,8 @@ import axios from "axios";
 
 
 
-function like(token, post) {
+function like( post) {
+    const token = localStorage.getItem("token");
     return new Promise((resolve) => {
         axios({
             method: "patch",

@@ -28,20 +28,19 @@ const ModifyPost = ({ post }) => {
         const newFormData = new FormData(document.getElementById("modifyingPost"));
         newFormData.append("imageUrl", file);
         newFormData.set("text", text);
-        console.log("text :", text);
-        console.log("file name :", file);
+        //console.log("text :", text);
+        //console.log("file name :", file);
         modifyPost(post._id, newFormData, token)
-            .then(
-                setStatusMessage("Publication modifiée !"),
+            .then(() => {
+                setStatusMessage("Publication modifiée !");
                 setTimeout(() => {
                     document.location.reload()
                 }, 2000)
+            }
             )
-            .catch(
-                setStatusMessage("Modification échouée : vous n'êtes pas le propriétaire de ce post."),
-                setTimeout(() => {
-                    setStatusMessage(" ");
-                }, 2000)
+            .catch(() => {
+                setStatusMessage("Modification échouée : vous n'êtes pas le propriétaire de ce post.")
+            }
             );
     }
 

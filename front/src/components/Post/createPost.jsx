@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 
 
+
 const CreatePost = () => {
     const [file, setFile] = useState("");
     const statusMessage = document.querySelector(".statusMessage");
@@ -48,7 +49,7 @@ const CreatePost = () => {
             <form action="" id="form" onSubmit={handleSubmit} encType="multipart/form-data">
                 <div>
                     <label htmlFor="text" className="labelText"> Votre texte :</label>
-                    <input type="text" name="text" id="text" />
+                    <textarea rows="4" name="text" id="text" maxLength= "500" />
                     <label htmlFor="image" className="labelImage"> Votre image :
                     <input
                         type="file"
