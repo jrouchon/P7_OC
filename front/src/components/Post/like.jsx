@@ -26,13 +26,9 @@ const Like = ({ post }) => {
     const userId = localStorage.getItem("userId");
     const [liked, setLiked] = useState(false);
     const [postNum, setPostNum] = useState(post.likes);
-    console.log("post", post);
+
     useEffect(() => {
-        const bool = post.usersLiked.includes(userId);
-        console.log("bool :", bool);
-        console.log(userId);
         if(post.usersLiked.includes(userId)) {
-            console.log("post liké par:", post.usersLiked)
             setLiked(true);
         }
     }, [post, setLiked, userId]

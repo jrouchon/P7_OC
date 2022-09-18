@@ -41,7 +41,46 @@ exports.createPost = (req, res) => {
       .catch((err) => res.status(500).json({err}));
 }
 
+exports.modifyPost = async (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+  const decodedToken = jwt.decode(token);
+  const userId = decodedToken.userId;
+  const {id} = req.params;
 
+  //console.log("req.params postId ? :", req.params);
+  //console.log("userId : ", userId);
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ message: "Ce post n'existe pas." });
+  }
+
+  await Post.findById(id)
+  .then((post) => {
+      User.findById(userId)
+        .then((currentUser) => {
+          if (currentUser.id !== post.userId) {
+            res.status(401).json({message : "Non autorisé."})
+          } else {
+            const text = req.body.text;
+            console.log("text : ", text);
+            console.log("image : ", req.file);
+            let image = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+            const filename = post.imageUrl.split("/images/")[1];
+            fs.unlink(`images/${filename}`, () => {
+              const updatedPost = {
+                userId: req.auth.userId,
+                text: text,
+                imageUrl: image,
+              }
+              post.updateOne(updatedPost)
+                  .then(() => res.status(200).json({ message: "Post modifié" }))
+                  .catch((error) => res.status(400).json({ error }));
+          })
+          }
+      })
+  })
+  .catch(err => res.status(500).json({error: err}))
+};
 
 
 exports.likePost = async (req, res) => {

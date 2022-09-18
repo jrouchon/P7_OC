@@ -1,6 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Like from "./like.jsx";
+import ModifyPost from "./modify.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 function dateParser(num) {
     let options = {
@@ -18,20 +21,37 @@ function dateParser(num) {
       return date.toString();
 }
 
-function getOnePost() {
-    // might delete this if not implemented
-    //changer li pour div 
-}
-
 const Card = ({ post }) => {
     const [isLoading, setIsLoading] = useState(true);
-    
+    const [showModify, setShowModify] = useState(false);
+    const [showGestion, setShowGestion] = useState(false);
+
+
+    function modifyToggle() {
+        const userId = localStorage.getItem("userId");
+        if (post.userId === userId) {
+            setShowModify(true)
+        } else {
+            setShowModify(false)
+        }
+    }
+
+    function showingGestion(post) {
+        const userId = localStorage.getItem("userId");
+        if (post.userId === userId) {
+            setShowGestion(true)
+        } else {
+            setShowGestion(false)
+        }
+    }
+
     useEffect(() => {
         post && setIsLoading(false)
+        showingGestion(post)
     }, [post]);
 
     return (
-        <div className="cardContainer" key={post._id} onClick={getOnePost}> 
+        <div className="cardContainer" key={post._id}> 
             {isLoading ? ( 
                 <i className="fas fa-spinner fa-spin"></i>
                 ) : (
@@ -46,6 +66,14 @@ const Card = ({ post }) => {
                     </div>
                     <div className="postAction">
                         <Like post={post} />
+                        {showGestion ? (
+                            <div className="postGestion">
+                            <FontAwesomeIcon icon={faPenToSquare} className="modifyBtn btn-action" onClick={modifyToggle} />
+                                {
+                                    showModify ? <ModifyPost post={post} /> : null
+                                }
+                            </div>
+                        ) : null }
                         
 
                     </div>
