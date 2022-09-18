@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons"
 
 
 
@@ -16,8 +18,8 @@ const CreatePost = () => {
         const myForm = document.getElementById("form");
         const formData = new FormData(myForm);
         formData.set("name", name);
-        formData.append("imageUrl", file);
-
+        if(file !== null)
+            formData.append("imageUrl", file);
         axios({
             method: "post",
             url: `${process.env.REACT_APP_API_URL}api/posts`,
@@ -39,7 +41,6 @@ const CreatePost = () => {
           .catch((err) => {
             statusMessage.innerHTML = `Une erreur est survenue : ${err}`;
           });
-
     }
 
     return (
@@ -50,7 +51,7 @@ const CreatePost = () => {
                 <div>
                     <label htmlFor="text" className="labelText"> Votre texte :</label>
                     <textarea rows="4" name="text" id="text" maxLength= "500" />
-                    <label htmlFor="image" className="labelImage"> Votre image :
+                    <label htmlFor="image" className="labelImage"> Votre image : <FontAwesomeIcon icon={faImage}/>
                     <input
                         type="file"
                         src=""

@@ -26,13 +26,14 @@ exports.getPosts = (req, res) => {
     date: { type: Date, default: new Date() }*/
 
 exports.createPost = (req, res) => {
-    //console.log('createPost req body : ', req.body);
 
     const post = new Post({
       userId: req.auth.userId,
       userName: req.body.name,
       text: req.body.text,
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+      imageUrl: req.file
+      ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+      : "",
       date: new Date().toISOString()
     });
     post
