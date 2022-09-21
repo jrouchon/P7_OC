@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import {useLocation} from 'react-router-dom';
 import axios from "axios";
 import Card from "./card.jsx"
 
@@ -24,6 +25,10 @@ const GetPosts = () => {
     if(!token) {
       window.location = "/";
     }
+    const location = useLocation();
+    const role = location.state;
+    //console.log("role getpost :", role);
+    //console.log("role location.state :", location.state);
 
     useEffect(() => {
         fetchPost(token)
@@ -37,7 +42,7 @@ const GetPosts = () => {
             <div>
                 {posts.reverse().map((post) => {
                     return (
-                    <Card post={post} key={post._id} />
+                    <Card post={post} key={post._id} role={role} />
                     )
                 })}
             </div>

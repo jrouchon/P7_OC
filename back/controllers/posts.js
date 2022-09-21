@@ -59,9 +59,7 @@ exports.modifyPost = async (req, res) => {
   .then((post) => {
       User.findById(userId)
         .then((currentUser) => {
-          if (currentUser.id !== post.userId) {
-            res.status(401).json({message : "Non autorisé."})
-          } else {
+          if (currentUser.id === post.userId || currentUser.role === "admin") {
             const text = req.body.text;
             //console.log("text : ", text);
             //console.log("image : ", req.file);
@@ -77,6 +75,8 @@ exports.modifyPost = async (req, res) => {
                   .then(() => res.status(200).json({ message: "Post modifié" }))
                   .catch((error) => res.status(400).json({ error }));
           })
+          } else {
+            res.status(401).json({message : "Non autorisé."})
           }
       })
   })
@@ -97,7 +97,7 @@ exports.deletePost = async (req, res) => {
       .then((post) => {
         User.findById(userId)
             .then((currentUser) => {
-              if (post.userId === currentUser.id || currentUser.role === admin) {
+              if (post.userId === currentUser.id || currentUser.role === "admin") {
                 const filename = post.imageUrl.split("/images/")[1];
                 fs.unlink(`images/${filename}`, () => {
                   Post.deleteOne({ _id: id })

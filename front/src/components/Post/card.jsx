@@ -22,17 +22,18 @@ function dateParser(num) {
       return date.toString();
 }
 
-const Card = ({ post }) => {
+const Card = ({ post, role }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [showModify, setShowModify] = useState(false);
     const [deleted, setDeleted] = useState(false);
     const [showGestion, setShowGestion] = useState(false);
+    const [userView, setUserView] = useState(true);
 
-
+    
 
     function modifyToggle() {
         const userId = localStorage.getItem("userId");
-        if (post.userId === userId) {
+        if (post.userId === userId || role === "admin") {
             setShowModify(true)
         } else {
             setShowModify(false)
@@ -41,16 +42,22 @@ const Card = ({ post }) => {
 
     function deleteToggle() {
         const userId = localStorage.getItem("userId");
-        if (post.userId === userId) {
+        if (post.userId === userId || role === "admin") {
             setDeleted(true)
         } else {
             setDeleted(false)
         }
     }
 
+    function isUserAdmin() {
+        if (role === "admin") {
+            setUserView(false)
+        }
+    }
+
     function showingGestion(post) {
         const userId = localStorage.getItem("userId");
-        if (post.userId === userId) {
+        if (post.userId === userId || role === "admin") {
             setShowGestion(true)
         } else {
             setShowGestion(false)
@@ -60,7 +67,8 @@ const Card = ({ post }) => {
     useEffect(() => {
         post && setIsLoading(false)
         showingGestion(post)
-    }, [post]);
+        isUserAdmin()
+    }, [post])
 
     return (
         <div className="cardContainer" key={post._id}> 
@@ -77,7 +85,7 @@ const Card = ({ post }) => {
                         {post.imageUrl ? (<img className="cardImage" src={post.imageUrl} alt={post.imageUrl} />) : null}
                     </div>
                     <div className="postAction">
-                        <Like post={post} />
+                        { userView ? <Like post={post} /> : null}
                         {showGestion ? (
                             <div className="postGestion">
                                 <FontAwesomeIcon icon={faPenToSquare} className="modifyBtn btn-action" onClick={modifyToggle} />

@@ -24,12 +24,13 @@ const LoginPage = () => {
       
       .then((res) => {
         if (res.status === 200) {
-          // delete res.config.adapter.data; //besoin de supprimer les informations de connexion ?
+          const role = res.data.role;
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("name", res.data.name);
           localStorage.setItem("userId", res.data.userId);
-          //console.log("res", res);
-          navigate('/posts');
+          console.log("res :", res);
+          console.log("res data role :", role);
+          navigate('/posts', { state: role });
           
         } else {
           emailError.innerHTML = "Identifiants incorrects";

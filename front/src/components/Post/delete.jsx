@@ -30,7 +30,9 @@ const DeletePost = ({ post }) => {
                     document.location.reload()
                 }, 2000))
                 : null)
-            .catch(setStatus("Vous ne pouvez pas supprimer ce post."))
+            .catch(setTimeout(() => {
+                document.location.reload()
+            }, 2000))
             .finally(setIsLoading(false))
     }, [post._id, token])
 

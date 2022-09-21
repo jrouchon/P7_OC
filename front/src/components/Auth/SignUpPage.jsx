@@ -26,10 +26,11 @@ const SignUpPage = () => {
       .then((res) => {
         signUpStatus.textContent = "Inscription réussie !";
         //console.log("res", res);
-        navigate('/posts');
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("name", res.data.name);
         localStorage.setItem("userId", res.data.userId);
+        navigate('/posts');
+        //
       })
       .catch(
         (err) =>
