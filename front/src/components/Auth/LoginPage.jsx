@@ -44,32 +44,32 @@ const LoginPage = () => {
   };
 
   return(
-    <form action="" onSubmit={handleLogin} id="login-form">
-      <div>
-      <label htmlFor="email" >Email</label>
-      <input
-        type="text"
-        name="email"
-        id="email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-        required={true}
-      />
+    <form action="" onSubmit={handleLogin} id="login-form" className="form-wrapper">
+      <div className="input-wrapper">
+        <label htmlFor="email" >Email :</label>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          required={true}
+        />
       </div>
       <div className="emailError"></div>
-      <div>
-      <label htmlFor="password">Mot de passe</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-        required={true}
-      />
+      <div className="input-wrapper">
+        <label htmlFor="password">Mot de passe :</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          required={true}
+        />
       </div>
       <div className="passwordError"></div>
-      <input  type="submit" value="Se connecter" />
+      <input className="submit-btn" type="submit" value="Se connecter" />
     </form>
   );
 }

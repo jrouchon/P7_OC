@@ -1,11 +1,116 @@
 * {
   font-family: "Lato", sans-serif;
-  color: blue;
+  color: #383a49;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  letter-spacing: 1px;
 }
 
 li {
   cursor: pointer;
+  list-style: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  width: 100%;
+  height: 100px;
+}
+header .logo {
+  width: 300px;
+}
+
+.auth-pages {
+  background: #ffd7d7;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  height: 70%;
+  min-width: 350px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 3px 30px 3px #595c74;
+  margin-top: 3%;
+}
+
+.auth-selec-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 15%;
+  border-radius: 20px 20px 0px 0px;
+}
+.auth-selec-wrapper li {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.signUpPart {
+  border-radius: 18px 0px 0px 0px;
+  background-color: #d5d6df;
+  box-shadow: inset 0px 0px 5px 2px #4e5166;
+}
+
+.loginPart {
+  border-radius: 0px 18px 0px 0px;
+  background-color: #d5d6df;
+  box-shadow: inset 0px 0px 5px 2px #4e5166;
+}
+
+.active-btn {
+  background-color: white;
+  box-shadow: none;
+}
+
+.form-wrapper {
+  margin-top: 7%;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 0px 10px 0px;
+}
+.input-wrapper input {
+  min-width: 250px;
+  height: 30px;
+  padding: 0.5em 0.5em 0.5em 1.8em;
+  margin: 5px 0px 5px 0px;
+  border: 2px solid #b8bac8;
+  border-radius: 10px;
+}
+.input-wrapper input:focus {
+  padding-left: 10px;
+}
+.input-wrapper label {
+  color: #383a49;
+}
+
+.submit-btn {
+  background-color: #fe8066;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 20px;
+  border: none;
+  font-weight: 700;
+  margin-top: 5%;
+  margin-left: 25%;
 }/*# sourceMappingURL=index.css.map */

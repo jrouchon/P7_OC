@@ -9,7 +9,6 @@ const Posts = () => {
     
     return (
         <div >
-            <h2>Page de posts</h2>
             <header>
                 <div className="logo-container">
                     <p>logo groupomania</p>

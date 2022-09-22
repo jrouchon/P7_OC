@@ -1,12 +1,11 @@
 import React from 'react';
 import './index.css';
-import Login from '../../components/Auth/authPage.jsx';
+import AuthPage from '../../components/Auth/authPage.jsx';
 
 const Auth = () => {
     return (
         <div >
-            <h2>Page d'authentification</h2>
-            <Login />
+            <AuthPage />
         </div>
     );
 };

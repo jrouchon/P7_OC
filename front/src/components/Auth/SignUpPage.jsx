@@ -39,9 +39,9 @@ const SignUpPage = () => {
   };
 
     return(
-    <form action="" onSubmit={handleSignup} id="login-form">
-        <div>
-            <label htmlFor="name" >Nom d'utilisateur</label>
+    <form action="" onSubmit={handleSignup} id="login-form" className="form-wrapper">
+        <div className="input-wrapper">
+            <label htmlFor="name" >Nom d'utilisateur :</label>
             <input
                 type="text"
                 name="name"
@@ -52,8 +52,8 @@ const SignUpPage = () => {
             />
         
         </div>
-        <div>
-            <label htmlFor="email" >Email</label>
+        <div className="input-wrapper">
+            <label htmlFor="email" >Email :</label>
             <input
                 type="text"
                 name="email"
@@ -64,8 +64,8 @@ const SignUpPage = () => {
             />
         
         </div>
-        <div>
-            <label htmlFor="password" >Mot de passe</label>
+        <div className="input-wrapper">
+            <label htmlFor="password" >Mot de passe :</label>
             <input
                 type="password"
                 name="password"
@@ -76,7 +76,7 @@ const SignUpPage = () => {
             />
         
         </div>
-        <input  type="submit" value="S'inscrire" />
+        <input className="submit-btn" type="submit" value="S'inscrire" />
         <div className="signup-status"></div>
     </form>
     );

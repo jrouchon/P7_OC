@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from 'react';
 import LoginPage from "./LoginPage.jsx";
 import SignUpPage from "./SignUpPage.jsx";
+import logo from '../../assets/logo.svg';
 
 //Login = classe(schema pour faire objet de type Login)
 const Login = () => { 
@@ -22,12 +23,22 @@ const Login = () => {
 
     return (
         <div>
-            <ul>
-                <li onClick={switchPart} id="signUpPart" >S'inscrire</li>
-                <li onClick={switchPart} id="loginPart" >Se connecter</li>
-            </ul>
-            { logBool && <LoginPage /> }
-            { signBool && <SignUpPage /> }
+            <header>
+                    <img src={logo} alt="Groupomania logo" className='logo' />
+            </header>
+            
+            <div className="auth-pages">
+                <div className="auth-wrapper">
+                    <ul className="auth-selec-wrapper">
+                        <li onClick={switchPart} id="signUpPart" className={(signBool ? "signUpPart active-btn" : "signUpPart")} >S'inscrire</li>
+                        <li onClick={switchPart} id="loginPart" className={(logBool ? "loginPart active-btn" : "loginPart")} >Se connecter</li>
+                    </ul>
+                    { logBool && <LoginPage /> }
+                    { signBool && <SignUpPage /> }
+                </div>
+            </div>
+            
+            
         </div>
     );
 }
