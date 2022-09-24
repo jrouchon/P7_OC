@@ -37,13 +37,13 @@ const Like = ({ post }) => {
 
     
     return (
-        <div className="likeButtonContainer">
+        <div className="likeButton-wrapper">
             <div className="likeButton">
-                <i className="fas fa-solid fa-thumbs-up" onClick={() => { 
+                <i className="fas fa-solid fa-heart" onClick={() => { 
                     like(post)
                         .then(() => {liked ? setLiked(false) : setLiked(true)})
                         .then(() => {liked ? setPostNum(postNum - 1) : setPostNum(postNum + 1)})
-                }} style={ liked ? { color: "green" } : { color: "grey"}}></i>
+                }} style={ liked ? { color: "#fd2d01" } : { color: "#4e5166"}}></i>
                 <p className="likeNum" style={{fontSize : "15px"}}>{postNum}</p>
             </div>
         </div>

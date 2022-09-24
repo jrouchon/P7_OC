@@ -32,11 +32,10 @@ const PostPage = () => {
     }
 
     return (
-        <div>
-            <h2>Pages de Posts : index</h2>
+        <div className="postsPage-wrapper">
             <ul>
-                <li onClick={switchPart} id="getPart" >Fil d'actualité</li>
-                { userView ? <li onClick={switchPart} id="createPart" >Créer un post</li> : null }
+                <li onClick={switchPart} id="getPart" className={(getBool ? "postsPage-btn postsPage-btn-on" : "postsPage-btn postsPage-btn-off")}>Fil d'actualité</li>
+                { userView ? <li onClick={switchPart} id="createPart" className={(createBool ? "postsPage-btn postsPage-btn-on" : "postsPage-btn postsPage-btn-off")}>Créer un post</li> : null }
                 
             </ul>
             { getBool && <GetPosts /> }

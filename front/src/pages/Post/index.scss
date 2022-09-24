@@ -1,18 +1,223 @@
-.cardContainer{
+$primary: #fd2d01;
+$secondary: #ffd7d7;
+$tertiary: #4e5166;
+
+.logout-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 20px 5px 5px;
+    cursor: pointer;
+    p {
+        padding: 0px 5px 0px 0px;
+        color: $primary;
+        font-weight: 700;
+    }
+    .logout-icon {
+        padding: 3px 0px 0px 0px;
+        color: $tertiary;
+    }
+}
+
+.postsPage-wrapper {
+    background-color: $secondary;
+    width: 100%;
+    min-height: 100%;
+    position: absolute;
+    
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+.postsPage-btn {
+    color: white;
+    padding: 16px 25px;
+    border-radius: 25px;
+    border: none;
+    font-weight: 700;
+    //border: 1px solid $primary;
+    margin: 3%;
+    &-on {
+        background-color: lighten($primary, 20%);
+    }
+    &-off {
+        background-color: lighten($tertiary, 20%);
+    }
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.page-title {
+    color: lighten($primary, 5%);
+    font-weight: 700;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    margin: 5px 0px 20px 0px;
+}
+
+.postsCard-wrapper {
+    margin: 0px 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
+
+.card-wrapper {
+    background-color: #fff;
     margin: 10px;
     border-radius: 10px;
-    box-shadow: 0px 0px 20px 3px blue;
+    box-shadow: 0px 3px 20px 5px lighten($tertiary, 5%);
 }
-.likeButtonContainer{
+
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.postName {
+    color: lighten($primary, 5%);
+    font-weight: 700;
+    font-size: 20px;
+    margin: 15px 0px 15px 20px;
+}
+
+.date {
+    margin: 15px 20px 15px 0px;
+}
+
+.postContent-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-text {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0px 10px;
+}
+
+.card-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px 10px;
+}
+
+.likeButton-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    margin: 10px 0px;
     .likeButton{
         display: flex;
         flex-direction: row;
+        font-size: 20px;
         i{
             cursor: pointer;
         }
     }
 }
+
+.postGestion-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.action-btn {
+    border: none;
+    width: 40%;
+    border-radius: 15px;
+    padding: 5px 15px;
+    margin: 2px;
+    font-size: 20px;
+    background-color: darken($secondary, 5%);
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.modify-form {
+    display: flex;
+    flex-direction: column;
+    label {
+        font-weight: 400;
+        font-size: 18px;
+        margin: 5px 0px 2px 0px;
+    }
+    input {
+        height: 30px;
+    }
+    button {
+        color: darken($tertiary, 10%);
+        margin: 5px;
+        padding: 5px 15px;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 15px;
+        border: 0;
+        background: lighten($tertiary, 40%);
+        transition: all 0.3s;
+        &:hover {
+            background: lighten($primary, 5%);
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}
+
+.createPost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createPost-form {
+    padding: 20px 40px;
+    background-color: #fff;
+    width: 70%;
+    border-radius: 20px;
+    box-shadow: 0px 3px 30px 3px lighten($tertiary, 5%);
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+        label {
+            font-weight: 400;
+            font-size: 20px;
+            margin: 20px 0px 5px 0px;
+            input {
+                height: 50px;
+                font-size: 15px;
+            }
+        }
+    }
+    .form-btn {
+        color: darken($tertiary, 10%);
+        margin: 5px;
+        padding: 10px 25px;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 20px;
+        border: 0;
+        background: lighten($tertiary, 40%);
+        transition: all 0.3s;
+        &:hover {
+            background: lighten($primary, 5%);
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}
+

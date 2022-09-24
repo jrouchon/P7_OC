@@ -1,19 +1,217 @@
-.cardContainer {
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px 3px blue;
+.logout-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 20px 5px 5px;
+  cursor: pointer;
+}
+.logout-wrapper p {
+  padding: 0px 5px 0px 0px;
+  color: #fd2d01;
+  font-weight: 700;
+}
+.logout-wrapper .logout-icon {
+  padding: 3px 0px 0px 0px;
+  color: #4e5166;
 }
 
-.likeButtonContainer {
+.postsPage-wrapper {
+  background-color: #ffd7d7;
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+}
+.postsPage-wrapper ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.postsPage-btn {
+  color: white;
+  padding: 16px 25px;
+  border-radius: 25px;
+  border: none;
+  font-weight: 700;
+  margin: 3%;
+}
+.postsPage-btn-on {
+  background-color: #fe8066;
+}
+.postsPage-btn-off {
+  background-color: #7e829c;
+}
+.postsPage-btn:hover {
+  transform: scale(1.1);
+}
+
+.page-title {
+  color: #fe4119;
+  font-weight: 700;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  margin: 5px 0px 20px 0px;
+}
+
+.postsCard-wrapper {
+  margin: 0px 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.card-wrapper {
+  background-color: #fff;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 20px 5px #595c74;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.postName {
+  color: #fe4119;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 15px 0px 15px 20px;
+}
+
+.date {
+  margin: 15px 20px 15px 0px;
+}
+
+.postContent-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-text {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0px 10px;
+}
+
+.card-image {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin: 10px 10px;
+}
+
+.likeButton-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  margin: 10px 0px;
 }
-.likeButtonContainer .likeButton {
+.likeButton-wrapper .likeButton {
   display: flex;
   flex-direction: row;
+  font-size: 20px;
 }
-.likeButtonContainer .likeButton i {
+.likeButton-wrapper .likeButton i {
+  cursor: pointer;
+}
+
+.postGestion-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.action-btn {
+  border: none;
+  width: 40%;
+  border-radius: 15px;
+  padding: 5px 15px;
+  margin: 2px;
+  font-size: 20px;
+  background-color: #ffbebe;
+  cursor: pointer;
+}
+.action-btn:hover {
+  transform: scale(1.1);
+}
+
+.modify-form {
+  display: flex;
+  flex-direction: column;
+}
+.modify-form label {
+  font-weight: 400;
+  font-size: 18px;
+  margin: 5px 0px 2px 0px;
+}
+.modify-form input {
+  height: 30px;
+}
+.modify-form button {
+  color: #383a49;
+  margin: 5px;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 15px;
+  border: 0;
+  background: #b8bac8;
+  transition: all 0.3s;
+}
+.modify-form button:hover {
+  background: #fe4119;
+  color: #fff;
+  cursor: pointer;
+}
+
+.createPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createPost-form {
+  padding: 20px 40px;
+  background-color: #fff;
+  width: 70%;
+  border-radius: 20px;
+  box-shadow: 0px 3px 30px 3px #595c74;
+}
+.createPost-form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.createPost-form-wrapper label {
+  font-weight: 400;
+  font-size: 20px;
+  margin: 20px 0px 5px 0px;
+}
+.createPost-form-wrapper label input {
+  height: 50px;
+  font-size: 15px;
+}
+.createPost-form .form-btn {
+  color: #383a49;
+  margin: 5px;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 20px;
+  border: 0;
+  background: #b8bac8;
+  transition: all 0.3s;
+}
+.createPost-form .form-btn:hover {
+  background: #fe4119;
+  color: #fff;
   cursor: pointer;
 }/*# sourceMappingURL=index.css.map */

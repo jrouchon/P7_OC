@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faArrowRightFromBracket} from '@fortawesome/free-solid-svg-icons';
 
 const Logout = () => {
     const navigate = useNavigate();
@@ -17,8 +19,9 @@ const Logout = () => {
         .catch(err => alert('Une erreur est survenue : ' + err))
     }
     return (
-        <div onClick={redirect}>
-            <p>Logout + logo</p>
+        <div onClick={redirect} className="logout-wrapper">
+            <p>Logout</p>
+            <FontAwesomeIcon icon={faArrowRightFromBracket} className='logout-icon' />
         </div>
     );
 };

@@ -28,7 +28,7 @@ header {
 }
 .auth-pages {
     background: $secondary;
-    position: fixed;
+    position: absolute;
     height: 100%;
     width: 100%;
     display: flex;
@@ -44,7 +44,7 @@ header {
     min-width: 350px; // under this smartphone format
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0px 3px 30px 3px lighten($tertiary, 5);
+    box-shadow: 0px 3px 30px 3px lighten($tertiary, 5%); //lighten($primary, 20%) ?
     margin-top: 3%;
 }
 .auth-selec-wrapper {

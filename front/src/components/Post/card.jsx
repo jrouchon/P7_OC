@@ -10,8 +10,7 @@ function dateParser(num) {
     let options = {
         hour: "2-digit",
         minute: "2-digit",
-        second: "2-digit",
-        weekday: "long",
+        weekday: "short",
         year: "numeric",
         month: "short",
         day: "numeric",
@@ -34,7 +33,11 @@ const Card = ({ post, role }) => {
     function modifyToggle() {
         const userId = localStorage.getItem("userId");
         if (post.userId === userId || role === "admin") {
-            setShowModify(true)
+            if (showModify === true) {
+                setShowModify(false)
+            } else 
+                setShowModify(true)
+            
         } else {
             setShowModify(false)
         }
@@ -71,26 +74,26 @@ const Card = ({ post, role }) => {
     }, [post])
 
     return (
-        <div className="cardContainer" key={post._id}> 
+        <div className="card-wrapper" key={post._id}> 
             {isLoading ? ( 
                 <i className="fas fa-spinner fa-spin"></i>
                 ) : (
-                <div>
+                <div className="card">
                     <div className='cardHeader'>
                         <p className='postName'>{post.userName}</p>
                         <p className='date'>{dateParser(post.date)}</p>
                     </div>
-                    <div className="postContent">
-                        {post.text ? (<h2>{post.text}</h2>) : null}
-                        {post.imageUrl ? (<img className="cardImage" src={post.imageUrl} alt={post.imageUrl} />) : null}
+                    <div className="postContent-wrapper">
+                        {post.text ? (<h3 className="card-text">{post.text}</h3>) : null}
+                        {post.imageUrl ? (<img className="card-image" src={post.imageUrl} alt={post.imageUrl} />) : null}
                     </div>
                     <div className="postAction">
                         { userView ? <Like post={post} /> : null}
                         {showGestion ? (
-                            <div className="postGestion">
-                                <FontAwesomeIcon icon={faPenToSquare} className="modifyBtn btn-action" onClick={modifyToggle} />
+                            <div className="postGestion-wrapper">
+                                <FontAwesomeIcon icon={faPenToSquare} className="modifyBtn action-btn" onClick={modifyToggle}/>
                                     { showModify ? <ModifyPost post={post} /> : null }
-                                <FontAwesomeIcon icon={faTrash} className="deleteToggle btn-action" onClick={deleteToggle} />
+                                <FontAwesomeIcon icon={faTrash} className="deleteToggle action-btn" onClick={deleteToggle} />
                                     { deleted ? <DeletePost post={post} /> : null }
                             </div>
                         ) : null }

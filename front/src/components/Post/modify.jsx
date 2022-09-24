@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from 'react';
 import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 function modifyPost(id, data, token) {
     return new Promise((resolve) => {
@@ -26,13 +28,17 @@ const ModifyPost = ({ post }) => {
 
     function handleSubmit() {
         const newFormData = new FormData(document.getElementById("modifyingPost"));
-        newFormData.append("imageUrl", file);
-        newFormData.set("text", text);
         //console.log("text :", text);
         //console.log("file name :", file);
-        modifyPost(post._id, newFormData, token)
+        if(file !== null || text !== null) {
+            if(file !== null)
+                newFormData.append("imageUrl", file);
+            if(text !== null)
+                newFormData.set("text", text);
+
+            modifyPost(post._id, newFormData, token)
             .then(() => {
-                setStatusMessage("Publication modifiée !");
+                setStatusMessage("Modification en cours !");
                 setTimeout(() => {
                     document.location.reload()
                 }, 2000)
@@ -42,19 +48,23 @@ const ModifyPost = ({ post }) => {
                 setStatusMessage("Modification échouée : vous n'êtes pas le propriétaire de ce post.")
             }
             );
+        } else {
+            setStatusMessage("Modification échouée : vous devez mettre au minimum du texte ou une image")
+        }
+        
     }
 
     return (
-        <div>
-            <form id="modifyingPost" encType="multipart/form-data" >
+        <div style={{ transition: "all 0.3s", zIndex: "2" }}>
+            <form id="modifyingPost" encType="multipart/form-data" className="modify-form">
                 <label htmlFor="newText">Nouveau text: </label>
-                <input type="text" onChange={(e) => setText(e.target.value)} />
-                <label htmlFor="newImage" className='modifiedImage'>Nouvelle image :</label>
+                <textarea rows="2" name="text" id="text" maxLength= "500" onChange={(e) => setText(e.target.value)}/>
+                <label htmlFor="newImage" className='modifiedImage'>Nouvelle image : <FontAwesomeIcon icon={faImage} /></label>
                 <input type="file" name="image" onChange={(e) => setFile(e.target.files[0].name)} />
                 <button type="submit" id="submit" onClick={(e) => { e.preventDefault(); handleSubmit()}}>
                     envoyer
                 </button>
-                <p className="modif-message" style={{fontSize: "15px", color: "blue", borderRadius: "5px", boxShadow: "0px 0px 20px 3px blue"}}>{statusMessage}</p>
+                <p className="modif-message" style={{fontSize: "15px"}}>{statusMessage}</p>
             </form>
 
         </div>

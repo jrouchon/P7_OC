@@ -44,22 +44,21 @@ const CreatePost = () => {
     }
 
     return (
-        <div>
-            <h2>Pages de Posts : création </h2>
+        <div className="createPost">
+            <h2 className="page-title">Créer un post</h2>
             
-            <form action="" id="form" onSubmit={handleSubmit} encType="multipart/form-data">
-                <div>
-                    <label htmlFor="text" className="labelText"> Votre texte :</label>
+            <form action="" id="form" onSubmit={handleSubmit} encType="multipart/form-data" className="createPost-form">
+                <div className="createPost-form-wrapper">
+                    <label htmlFor="text" className="label-Text"> Votre texte :</label>
                     <textarea rows="4" name="text" id="text" maxLength= "500" />
-                    <label htmlFor="image" className="labelImage"> Votre image : <FontAwesomeIcon icon={faImage}/>
-                    <input
-                        type="file"
-                        src=""
-                        alt=""
-                        name="image"
-                        id="image"
-                        onChange={(e) => setFile(e.target.files[0].name)}
-                    />
+                    <label htmlFor="image" className="label-image"> Votre image : <FontAwesomeIcon icon={faImage}/> <input
+                            type="file"
+                            src=""
+                            alt=""
+                            name="image"
+                            id="image"
+                            onChange={(e) => setFile(e.target.files[0].name)}
+                        />
                     </label>
    
                 </div>

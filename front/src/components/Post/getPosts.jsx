@@ -37,16 +37,17 @@ const GetPosts = () => {
       }, [token])
 
     return (
-        <div id="postsContainer">
-            <h2>Pages de Posts : fil </h2>
-            <div>
-                {posts.reverse().map((post) => {
-                    return (
-                    <Card post={post} key={post._id} role={role} />
-                    )
-                })}
-            </div>
+      <div id="posts-wrapper">
+        <h2 className="page-title">Mon fil d'actualité</h2>
+        <div className="postsCard-wrapper">
+            {posts.reverse().map((post) => {
+                return (
+                <Card post={post} key={post._id} role={role} />
+                )
+            })}
         </div>
+      </div>
+      
     );
 }
 

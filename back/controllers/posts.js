@@ -55,21 +55,22 @@ exports.modifyPost = async (req, res) => {
     return res.status(404).json({ message: "Ce post n'existe pas." });
   }
 
+  if(req.body.text === null && req.file === null) {
+    return res.status(404).json({ message: "Le post ne peut être vide" });
+  }
+
   await Post.findById(id)
   .then((post) => {
       User.findById(userId)
         .then((currentUser) => {
           if (currentUser.id === post.userId || currentUser.role === "admin") {
             const text = req.body.text;
-            //console.log("text : ", text);
-            //console.log("image : ", req.file);
-            let image = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
             const filename = post.imageUrl.split("/images/")[1];
             fs.unlink(`images/${filename}`, () => {
               const updatedPost = {
-                userId: req.auth.userId,
-                text: text,
-                imageUrl: image,
+                userId: currentUser.id,
+                text: text ? text : "",
+                imageUrl: req.file ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`: "",
               }
               post.updateOne(updatedPost)
                   .then(() => res.status(200).json({ message: "Post modifié" }))
