@@ -20,4 +20,4 @@ Côté front :
 
 • Lancez la commande : npm install
 
-• Lancer ensuite la commande : npm run start.
+• Lancer ensuite la commande : npm run start
