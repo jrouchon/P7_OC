@@ -28,8 +28,6 @@ const ModifyPost = ({ post }) => {
 
     function handleSubmit() {
         const newFormData = new FormData(document.getElementById("modifyingPost"));
-        //console.log("text :", text);
-        //console.log("file name :", file);
         if(file !== null || text !== null) {
             if(file !== null)
                 newFormData.append("imageUrl", file);

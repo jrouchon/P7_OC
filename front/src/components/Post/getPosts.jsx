@@ -21,14 +21,12 @@ function fetchPost(token) {
 const GetPosts = () => {
     const [posts, setPosts] = useState([]);
     const token = localStorage.getItem("token");
-    //console.log("token", token);
+    
     if(!token) {
       window.location = "/";
     }
     const location = useLocation();
     const role = location.state;
-    //console.log("role getpost :", role);
-    //console.log("role location.state :", location.state);
 
     useEffect(() => {
         fetchPost(token)

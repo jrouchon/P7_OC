@@ -6,7 +6,6 @@ const tk = process.env.RD_TOKEN;
 
 //hash du mdp et sauvegarde en bdd du mdp hashé, du nom et de l'email
 exports.signupUser = (req, res) => {
-    //console.log(req.body);
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
@@ -34,7 +33,6 @@ exports.signupUser = (req, res) => {
 
 //comparatif de l'email de la req avec les emails en bdd, puis comparatif des mdp et création du token d'identification
 exports.loginUser = (req, res) => { 
-    //console.log(req.body);
     User.findOne({ email: req.body.email })
         .then(user => {
             if (user === null) {

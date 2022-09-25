@@ -3,7 +3,6 @@ const fs = require('fs');
 const mongoose = require("mongoose");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-// const tk = process.env.RD_TOKEN;
 
 exports.getPosts = (req, res) => {
     Post.find((err, posts) => {
@@ -15,15 +14,6 @@ exports.getPosts = (req, res) => {
       }).sort({ "date" : -1});
 }; 
 
-    /*userId: { type: String, required: true },
-    userName: { type: String, required: true }, // 
-    text: { type: String },
-    imageUrl: { type: String },
-    likes: { type: Number, default: 0 },
-    dislikes: { type: Number, default: 0 },
-    usersLiked: { type: [String], default: [] },
-    usersDisliked: { type: [String], default: [] },
-    date: { type: Date, default: new Date() }*/
 
 exports.createPost = (req, res) => {
 
@@ -48,8 +38,6 @@ exports.modifyPost = async (req, res) => {
   const userId = decodedToken.userId;
   const {id} = req.params;
 
-  //console.log("req.params postId ? :", req.params);
-  //console.log("userId : ", userId);
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ message: "Ce post n'existe pas." });

@@ -6,6 +6,7 @@ import DeletePost from "./delete.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 
+//choix du format de l'affichage de la date, puis on parse num et on recupère la date au bon format avec la bonne timezone
 function dateParser(num) {
     let options = {
         hour: "2-digit",

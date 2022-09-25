@@ -37,7 +37,6 @@ $tertiary: #4e5166;
     border-radius: 25px;
     border: none;
     font-weight: 700;
-    //border: 1px solid $primary;
     margin: 3%;
     &-on {
         background-color: lighten($primary, 20%);
@@ -64,6 +63,13 @@ $tertiary: #4e5166;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
+    @media (max-width: 1000px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+    @media (max-width: 735px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 .card-wrapper {

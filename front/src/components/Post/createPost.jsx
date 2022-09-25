@@ -4,8 +4,6 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons"
 
-
-
 const CreatePost = () => {
     const [file, setFile] = useState("");
     const statusMessage = document.querySelector(".statusMessage");

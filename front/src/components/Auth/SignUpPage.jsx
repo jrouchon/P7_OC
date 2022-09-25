@@ -25,12 +25,14 @@ const SignUpPage = () => {
     })
       .then((res) => {
         signUpStatus.textContent = "Inscription réussie !";
-        //console.log("res", res);
+        
+        const role = res.data.role;
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("name", res.data.name);
         localStorage.setItem("userId", res.data.userId);
-        navigate('/posts');
-        //
+
+        navigate('/posts', { state: role });
+        
       })
       .catch(
         (err) =>

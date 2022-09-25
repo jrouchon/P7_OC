@@ -28,8 +28,7 @@ const LoginPage = () => {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("name", res.data.name);
           localStorage.setItem("userId", res.data.userId);
-          console.log("res :", res);
-          console.log("res data role :", role);
+          
           navigate('/posts', { state: role });
           
         } else {
@@ -38,8 +37,8 @@ const LoginPage = () => {
         }
       })
       .catch((err) => {
-        emailError.innerHTML = "Identifiants incorrects " + err; //enlever les err 
-        passwordError.innerHTML = "Identifiants incorrects " + err; //enlever les err 
+        emailError.innerHTML = "Identifiants incorrects " + err; 
+        passwordError.innerHTML = "Identifiants incorrects " + err; 
       })
   };
 
