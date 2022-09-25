@@ -2,9 +2,9 @@ P7 - GROUPOMANIA
 
 Pour ce projet, vous aurez besoin de suivre quelques étapes :
 
-Côté back :
-
 • Clonez ce repository
+
+Côté back :
 
 • Si vous n’avez pas encore installé NodeJS, installez-le depuis ce lien : https://nodejs.org/
 
