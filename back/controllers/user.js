@@ -23,6 +23,7 @@ exports.signupUser = (req, res) => {
                 res.setHeader("Authorization", "Bearer" + token);
                 res.status(201).json({
                     userId: user._id,
+                    name: user.name,
                     token: token
                 })
             })

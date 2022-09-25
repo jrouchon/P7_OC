@@ -16,7 +16,6 @@ exports.getPosts = (req, res) => {
 
 
 exports.createPost = (req, res) => {
-
     const post = new Post({
       userId: req.auth.userId,
       userName: req.body.name,

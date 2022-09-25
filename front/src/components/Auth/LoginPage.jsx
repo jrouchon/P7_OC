@@ -26,6 +26,7 @@ const LoginPage = () => {
         if (res.status === 200) {
           const role = res.data.role;
           localStorage.setItem("token", res.data.token);
+          
           localStorage.setItem("name", res.data.name);
           localStorage.setItem("userId", res.data.userId);
           

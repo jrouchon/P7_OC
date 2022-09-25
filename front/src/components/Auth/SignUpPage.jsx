@@ -25,7 +25,6 @@ const SignUpPage = () => {
     })
       .then((res) => {
         signUpStatus.textContent = "Inscription réussie !";
-        
         const role = res.data.role;
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("name", res.data.name);
